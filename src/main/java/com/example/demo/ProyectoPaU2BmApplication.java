@@ -6,13 +6,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.uce.modelo.Estudiante;
+import com.example.demo.uce.modelo.Profesor;
 import com.example.demo.uce.service.IEstudianteService;
+import com.example.demo.uce.service.IProfesorService;
 
 @SpringBootApplication
 public class ProyectoPaU2BmApplication implements CommandLineRunner{
 
 	@Autowired
 	private IEstudianteService estudainteService;
+	
+	@Autowired
+	private IProfesorService iProfesorService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU2BmApplication.class, args);
@@ -21,14 +26,14 @@ public class ProyectoPaU2BmApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		Estudiante estu = new Estudiante();
+		//Estudiante estu = new Estudiante();
 		//estu.setId(4);
-		estu.setNombre("Ferxxo");
-		estu.setApellido("Paucar");
-		estu.setCedula("1753054285");
-		estu.setCiudad("Quito");
-		estu.setGenero("Masculino");
-		this.estudainteService.agregar(estu);
+//		estu.setNombre("Ferxxo");
+//		estu.setApellido("Paucar");
+//		estu.setCedula("1753054285");
+//		estu.setCiudad("Quito");
+//		estu.setGenero("Masculino");
+//		this.estudainteService.agregar(estu);
 		
 		//estu.setNombre("Juan");
 		//estu.setCedula("12345678");
@@ -40,6 +45,16 @@ public class ProyectoPaU2BmApplication implements CommandLineRunner{
 		
 		//this.estudainteService.borrar(1);
 	
-	
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		Profesor prof = new Profesor();
+		//prof.setId(1); ya no se pone por la secuencia creada
+		prof.setNombre("Alex");
+		prof.setApellido("Andrango");
+		prof.setCedula("12345");
+		prof.setCiudad("Quito");
+		prof.setGenero("M");
+		this.iProfesorService.agregar(prof);
+		
 }
 }
