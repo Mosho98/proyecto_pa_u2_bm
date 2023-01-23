@@ -12,16 +12,18 @@ import com.example.demo.uce.modelo.Ciudadano;
 import com.example.demo.uce.modelo.Empleado;
 import com.example.demo.uce.modelo.Estudiante;
 import com.example.demo.uce.service.ICiudadanoService;
+import com.example.demo.uce.service.IEmpleadoService;
 import com.example.demo.uce.service.IEstudianteService;
 
 @SpringBootApplication
 public class ProyectoPaU2BmApplication implements CommandLineRunner{
 
 	@Autowired
-	private IEstudianteService estudainteService;
+	private ICiudadanoService ciudadanoService;
 	
 	@Autowired
-	private ICiudadanoService ciudadanoService; 
+	private IEmpleadoService empleadoService;
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU2BmApplication.class, args);
@@ -30,40 +32,29 @@ public class ProyectoPaU2BmApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		Estudiante estu = new Estudiante();
-		//estu.setId(4);
-		estu.setNombre("Ferxxo");
-		estu.setApellido("Paucar");
-		estu.setCedula("1753054285");
-		estu.setCiudad("Quito");
-		estu.setGenero("Masculino");
-		this.estudainteService.agregar(estu);
 		
+		Ciudadano ciu=new Ciudadano();
+		ciu.setNombre("Bryan");
+		ciu.setApellido("Mullo"); 
+		this.ciudadanoService.insertar(ciu); 
+		this.ciudadanoService.borrar(20);
+		Ciudadano buscar=this.ciudadanoService.encontrar(11);
+		System.out.println(buscar);
 		
-		Ciudadano ciud = new Ciudadano();
-		ciud.setNombre("Bryan");
-		ciud.setApellido("Mullo");
-		this.ciudadanoService.insertar(ciud);
+	
 		
-		
-		Empleado empl = new Empleado();
-		empl.setSalario(new BigDecimal(20));
+		Empleado empl= new Empleado();
 		empl.setFechaIngreso(LocalDateTime.now());
-		empl.setCiudadano(ciud);
+		empl.setSalario(new BigDecimal(100));
+		empl.setCiudadano(ciu);
+		ciu.setEmpleado(empl);
 		
-		ciud.setEmpleado(empl);
+		this.empleadoService.agregar(empl);
+		this.empleadoService.borrar(10);
+		Empleado emplbusqueda=this.empleadoService.encontrar(6);
+		//System.out.println(emplbusqueda);
 		
 		
-		//estu.setNombre("Juan");
-		//estu.setCedula("12345678");
-		//this.estudainteService.modificar(estu);
-		
-		
-		//Estudiante estu2 = this.estudainteService.buscar(2);
-		//System.out.println(estu2);
-		
-		//this.estudainteService.borrar(1);
-	
-	
-}
+	}
+
 }

@@ -5,4 +5,8 @@ import com.example.demo.uce.modelo.Ciudadano;
 public interface ICiudadanoService {
 
 	public void insertar(Ciudadano ciudadano);
+	public void actualizar(Ciudadano ciudadano);
+	
+	public Ciudadano encontrar(Integer id);
+	public void borrar(Integer id);
 }
