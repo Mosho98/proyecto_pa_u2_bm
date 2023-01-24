@@ -1,19 +1,18 @@
 package com.example.demo;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.uce.modelo.Ciudadano;
-import com.example.demo.uce.modelo.Empleado;
-import com.example.demo.uce.modelo.Estudiante;
+import com.example.demo.uce.modelo.Habitacion;
+import com.example.demo.uce.modelo.Hotel;
 import com.example.demo.uce.service.ICiudadanoService;
 import com.example.demo.uce.service.IEmpleadoService;
-import com.example.demo.uce.service.IEstudianteService;
+import com.example.demo.uce.service.IHotelService;
 
 @SpringBootApplication
 public class ProyectoPaU2BmApplication implements CommandLineRunner{
@@ -23,6 +22,9 @@ public class ProyectoPaU2BmApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IEmpleadoService empleadoService;
+	
+	@Autowired
+	private IHotelService hotelService;
 	
 	
 	public static void main(String[] args) {
@@ -64,6 +66,40 @@ public class ProyectoPaU2BmApplication implements CommandLineRunner{
 //		
 //		//this.ciudadanoService.insertar(ciu2);
 //		this.empleadoService.agregar(empl2);
+		
+		
+		
+		
+		Habitacion A1=new Habitacion();
+		Habitacion A2=new Habitacion();		
+		
+		
+		List<Habitacion> habitaciones =new ArrayList<>();
+		habitaciones.add(A1);
+		habitaciones.add(A2);
+		
+		
+		Hotel hotel=new Hotel();
+		hotel.setDireccion("Esmeraldas");
+		hotel.setNombre("Casa Blanca");
+		hotel.setHabitaciones(habitaciones);
+		//this.hotelService.agregar(hotel);
+		
+		A1.setHotel(hotel);
+		A1.setNumero("A1");
+	    
+		
+		
+		Hotel actulizar=this.hotelService.encontrar(1);
+		actulizar.setDireccion("Salinas");
+		actulizar.setHabitaciones(habitaciones);
+		actulizar.setNombre("Casa Blanca");
+		
+		
+		this.hotelService.borrar(2);
+		this.hotelService.modificar(actulizar);
+		
+		
 	}
 
 }
