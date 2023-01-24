@@ -32,29 +32,38 @@ public class ProyectoPaU2BmApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-		Ciudadano ciu=new Ciudadano();
-		ciu.setNombre("Bryan");
-		ciu.setApellido("Mullo"); 
-		this.ciudadanoService.insertar(ciu); 
-		this.ciudadanoService.borrar(20);
-		Ciudadano buscar=this.ciudadanoService.encontrar(11);
-		System.out.println(buscar);
-		
-	
-		
-		Empleado empl= new Empleado();
-		empl.setFechaIngreso(LocalDateTime.now());
-		empl.setSalario(new BigDecimal(100));
-		empl.setCiudadano(ciu);
-		ciu.setEmpleado(empl);
-		
-		this.empleadoService.agregar(empl);
-		this.empleadoService.borrar(10);
-		Empleado emplbusqueda=this.empleadoService.encontrar(6);
-		//System.out.println(emplbusqueda);
+//		
+//		Ciudadano ciu=new Ciudadano();
+//		ciu.setNombre("Bryan");
+//		ciu.setApellido("Mullo"); 
+//		
+//		this.ciudadanoService.insertar(ciu);
+//	
+//		
+//		Empleado empl= new Empleado();
+//		empl.setFechaIngreso(LocalDateTime.now());
+//		empl.setSalario(new BigDecimal(100));
+//		empl.setCiudadano(ciu);
+//		
+//		ciu.setEmpleado(empl);
 		
 		
+		
+		//segundo ejemplo
+		
+//		Ciudadano ciu2=new Ciudadano();
+//		ciu2.setNombre("Bryan");
+//		ciu2.setApellido("Mullo"); 
+//		
+//		
+//		Empleado empl2= new Empleado();
+//		empl2.setFechaIngreso(LocalDateTime.now());
+//		empl2.setSalario(new BigDecimal(100));
+//		empl2.setCiudadano(ciu2);
+//		ciu2.setEmpleado(empl2);
+//		
+//		//this.ciudadanoService.insertar(ciu2);
+//		this.empleadoService.agregar(empl2);
 	}
 
 }
