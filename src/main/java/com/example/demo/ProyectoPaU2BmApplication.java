@@ -12,6 +12,7 @@ import com.example.demo.uce.modelo.Habitacion;
 import com.example.demo.uce.modelo.Hotel;
 import com.example.demo.uce.service.ICiudadanoService;
 import com.example.demo.uce.service.IEmpleadoService;
+import com.example.demo.uce.service.IHabitacionService;
 import com.example.demo.uce.service.IHotelService;
 
 @SpringBootApplication
@@ -25,6 +26,9 @@ public class ProyectoPaU2BmApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IHotelService hotelService;
+	
+	@Autowired
+	private IHabitacionService habitacionService;
 	
 	
 	public static void main(String[] args) {
@@ -89,16 +93,31 @@ public class ProyectoPaU2BmApplication implements CommandLineRunner{
 		A1.setNumero("A1");
 	    
 		
-		
-		Hotel actulizar=this.hotelService.encontrar(1);
+		Hotel actulizar=this.hotelService.encontrar(1);	
+		Habitacion hab = new Habitacion();
 		actulizar.setDireccion("Salinas");
 		actulizar.setHabitaciones(habitaciones);
 		actulizar.setNombre("Casa Blanca");
 		
+		hab.setHotel(actulizar);
+		hab.setNumero("A2");
+		//this.habitacionService.agregar(hab);
 		
-		this.hotelService.borrar(2);
-		this.hotelService.modificar(actulizar);
+		//Habitacion buscar = this.habitacionService.encontrar(10);
+		//this.habitacionService.borrar(10);
+//		this.hotelService.borrar(2);
+//		this.hotelService.modificar(actulizar);
 		
+		Hotel buscar = this.hotelService.encontrar(1);
+		System.out.println(buscar.getNombre());
+		
+		
+	    List<Habitacion> habita = buscar.getHabitaciones();
+
+	for ( var var : habita) 
+		{ 
+	   System.out.println(var);		}
+
 		
 	}
 
