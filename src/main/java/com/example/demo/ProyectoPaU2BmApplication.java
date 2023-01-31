@@ -1,124 +1,60 @@
 package com.example.demo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.uce.modelo.Habitacion;
-import com.example.demo.uce.modelo.Hotel;
-import com.example.demo.uce.service.ICiudadanoService;
-import com.example.demo.uce.service.IEmpleadoService;
-import com.example.demo.uce.service.IHabitacionService;
-import com.example.demo.uce.service.IHotelService;
+import com.example.demo.uce.modelo.Autor;
+import com.example.demo.uce.modelo.Libro;
+import com.example.demo.uce.service.IAutorService;
 
 @SpringBootApplication
 public class ProyectoPaU2BmApplication implements CommandLineRunner{
 
-	@Autowired
-	private ICiudadanoService ciudadanoService;
-	
-	@Autowired
-	private IEmpleadoService empleadoService;
-	
-	@Autowired
-	private IHotelService hotelService;
-	
-	@Autowired
-	private IHabitacionService habitacionService;
-	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU2BmApplication.class, args);
 	}
 
+//	@Autowired
+//	private IPersonaService iPersonaService ;
+//	@Autowired
+//	private ICedulaService cedulaService;
+	
+	@Autowired
+	private IAutorService autorService;
+	
+	
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-//		
-//		Ciudadano ciu=new Ciudadano();
-//		ciu.setNombre("Bryan");
-//		ciu.setApellido("Mullo"); 
-//		
-//		this.ciudadanoService.insertar(ciu);
-//	
-//		
-//		Empleado empl= new Empleado();
-//		empl.setFechaIngreso(LocalDateTime.now());
-//		empl.setSalario(new BigDecimal(100));
-//		empl.setCiudadano(ciu);
-//		
-//		ciu.setEmpleado(empl);
+		Libro l1 = new Libro();
+		Set<Autor> autores = new HashSet<Autor>();
 		
-		
-		
-		//segundo ejemplo
-		
-//		Ciudadano ciu2=new Ciudadano();
-//		ciu2.setNombre("Bryan");
-//		ciu2.setApellido("Mullo"); 
-//		
-//		
-//		Empleado empl2= new Empleado();
-//		empl2.setFechaIngreso(LocalDateTime.now());
-//		empl2.setSalario(new BigDecimal(100));
-//		empl2.setCiudadano(ciu2);
-//		ciu2.setEmpleado(empl2);
-//		
-//		//this.ciudadanoService.insertar(ciu2);
-//		this.empleadoService.agregar(empl2);
-		
-		
-		
-		
-		Habitacion A1=new Habitacion();
-		Habitacion A2=new Habitacion();		
-		
-		
-		List<Habitacion> habitaciones =new ArrayList<>();
-		habitaciones.add(A1);
-		habitaciones.add(A2);
-		
-		
-		Hotel hotel=new Hotel();
-		hotel.setDireccion("Esmeraldas");
-		hotel.setNombre("Casa Blanca");
-		hotel.setHabitaciones(habitaciones);
-		//this.hotelService.agregar(hotel);
-		
-		A1.setHotel(hotel);
-		A1.setNumero("A1");
-	    
-		
-		Hotel actulizar=this.hotelService.encontrar(1);	
-		Habitacion hab = new Habitacion();
-		actulizar.setDireccion("Salinas");
-		actulizar.setHabitaciones(habitaciones);
-		actulizar.setNombre("Casa Blanca");
-		
-		hab.setHotel(actulizar);
-		hab.setNumero("A2");
-		//this.habitacionService.agregar(hab);
-		
-		//Habitacion buscar = this.habitacionService.encontrar(10);
-		//this.habitacionService.borrar(10);
-//		this.hotelService.borrar(2);
-//		this.hotelService.modificar(actulizar);
-		
-		Hotel buscar = this.hotelService.encontrar(1);
-		System.out.println(buscar.getNombre());
-		
-		
-	    List<Habitacion> habita = buscar.getHabitaciones();
+		   Autor a1 = new Autor();
+			a1.setNombre("WS");
 
-	for ( var var : habita) 
-		{ 
-	   System.out.println(var);		}
-
+			autores.add(a1);
+			
+			
+		l1.setNombre("P.web");
+		l1.setAutores(autores);
+		Libro l2 = new Libro();
+		l2.setNombre("Redes");
+		l2.setAutores(autores);
+		   Set<Libro> libro = new HashSet<Libro>();
 		
+		   libro.add(l1);
+		   libro.add(l2);
+		   
+				   a1.setLibros(libro);
+		   
+		   
+		   this.autorService.agregar(a1);
 	}
 
 }
